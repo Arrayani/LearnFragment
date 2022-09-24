@@ -7,11 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.TextView
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import java.util.*
 
 class ListViewAdapter(// Declare Variables
-    var mContext: Fragment, animalNamesList: MutableList<AnimalNames>?
+    var mContext: FragmentActivity, animalNamesList: MutableList<AnimalNames>?
 ) : BaseAdapter() {
     var inflater: LayoutInflater
     private var animalNamesList: MutableList<AnimalNames>? = null
@@ -39,6 +39,7 @@ class ListViewAdapter(// Declare Variables
         if (view == null) {
             holder = ViewHolder()
             view = inflater.inflate(R.layout.list_view_items, null)
+            //view= LayoutInflater.from(mContext).inflate(R.layout.list_view_items,null)
             // Locate the TextViews in listview_item.xml
             holder.name = view.findViewById<View>(R.id.name) as TextView
             view.tag = holder
@@ -70,7 +71,7 @@ class ListViewAdapter(// Declare Variables
     init {
         this.animalNamesList = animalNamesList
         //inflater = LayoutInflater.from(mContext)
-        inflater = LayoutInflater.from(mContext)
+        inflater = LayoutInflater.from(mContext!!)
         arraylist = ArrayList()
         arraylist.addAll(animalNamesList!!)
     }

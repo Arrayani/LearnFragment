@@ -1,6 +1,9 @@
 package com.example.learnfragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -25,10 +28,16 @@ class Fragment1: Fragment(R.layout.fragment1), SearchView.OnQueryTextListener {
     lateinit var animalNameList: Array<String>
     var arraylist = ArrayList<AnimalNames>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = Fragment1Binding.bind(requireView())
+    private var _binding: Fragment1Binding? =null
+    private val binding get() = _binding!!
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        _binding = Fragment1Binding.inflate(inflater,container,false)
 
 
         // Generate sample data
@@ -46,13 +55,16 @@ class Fragment1: Fragment(R.layout.fragment1), SearchView.OnQueryTextListener {
         }
 
         // Pass results to ListViewAdapter Class
-        adapter = ListViewAdapter(this@Fragment1, arraylist)
+        //adapter = ListViewAdapter(this, arraylist)
+        adapter = ListViewAdapter(requireActivity(), arraylist)
 
         // Binds the Adapter to the ListView
         list.adapter = adapter
 
         val editsearch = binding.search
         editsearch.setOnQueryTextListener(this@Fragment1)
+
+        return binding.root
 
     }
 

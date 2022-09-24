@@ -8,17 +8,18 @@
 
 
     <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainer"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:id="@+id/fragmentContainer"/>
+        android:layout_height="600dp" />
+
     <Button
+        android:id="@+id/fragmnetBnt1"
         android:layout_width="150dp"
         android:layout_height="60dp"
-        android:id="@+id/fragmnetBnt1"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="50dp"
         android:layout_marginStart="30dp"
-        android:text="Fragment1"/>
+        android:layout_marginBottom="50dp"
+        android:text="Fragment1" />
     <Button
         android:layout_width="150dp"
         android:layout_height="60dp"
@@ -29,5 +30,14 @@
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
         android:text="Fragement2"/>
+
+    <Button
+        android:id="@+id/secondBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="3dp"
+        android:text="Second Activity" />
 
 </RelativeLayout>
