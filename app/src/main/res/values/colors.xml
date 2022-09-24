@@ -9,5 +9,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="fragment1">#18811C</color>
     <color name="fragment2">#C59916</color>
+    <color name="underline">#D8D6D6</color>
+    <color name="deletecolor">#DD3124</color>
+    <color name="archiveColor">#3AE015</color>
 
 </resources>

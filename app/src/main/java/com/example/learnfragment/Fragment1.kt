@@ -1,9 +1,13 @@
 package com.example.learnfragment
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.learnfragment.databinding.Fragment1Binding
 import java.util.ArrayList
 
@@ -21,14 +25,22 @@ class Fragment1: Fragment(R.layout.fragment1), SearchView.OnQueryTextListener {
 
     var list: ListView? = null
     var adapter: ListViewAdapter? = null
+    var adapter2: RecViewAdapter?=null
     var editsearch: SearchView? = null
     lateinit var animalNameList: Array<String>
     var arraylist = ArrayList<AnimalNames>()
+    var recyclerView:RecyclerView?=null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val binding = Fragment1Binding.bind(requireView())
+    private var _binding: Fragment1Binding? =null
+    private val binding get() = _binding!!
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+
+        _binding = Fragment1Binding.inflate(inflater,container,false)
 
 
         // Generate sample data
@@ -38,7 +50,7 @@ class Fragment1: Fragment(R.layout.fragment1), SearchView.OnQueryTextListener {
             "Cow", "Donkey", "Monkey"
         )
 
-        val list = binding.listview
+        //val list = binding.listview
         for (i in animalNameList.indices) {
             val animalNames = AnimalNames(animalNameList[i])
             // Binds all strings into an array
@@ -46,13 +58,20 @@ class Fragment1: Fragment(R.layout.fragment1), SearchView.OnQueryTextListener {
         }
 
         // Pass results to ListViewAdapter Class
-        adapter = ListViewAdapter(this@Fragment1, arraylist)
+        //adapter = ListViewAdapter(this, arraylist)
+        adapter = ListViewAdapter(requireActivity(), arraylist)
+        adapter2 = RecViewAdapter(this,arraylist)
 
         // Binds the Adapter to the ListView
-        list.adapter = adapter
+        //list.adapter = adapter
+        recyclerView!!.adapter = adapter2
+
+
 
         val editsearch = binding.search
         editsearch.setOnQueryTextListener(this@Fragment1)
+
+        return binding.root
 
     }
 

@@ -1,5 +1,6 @@
 package com.example.learnfragment
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -17,6 +18,10 @@ class MainActivity : AppCompatActivity() {
         }
         binding.fragmnetBnt2.setOnClickListener{
             replaceFragment(Fragment2())
+        }
+        binding.secondBtn.setOnClickListener{
+            val intent = Intent(this,SecondActivity::class.java)
+            startActivity(intent)
         }
     }
 
